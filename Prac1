@@ -1,0 +1,35 @@
+public class SecondLargestElement {
+
+    public static int findSecondLargest(int[] arr) {
+        // Check if array has at least two elements
+        if (arr.length < 2) {
+            System.out.println("Array should have at least two elements");
+            return -1; // return -1 if array has less than two elements
+        }
+
+        int firstMax = Integer.MIN_VALUE; // largest element
+        int secondMax = Integer.MIN_VALUE; // second largest element
+
+        // Traverse the array
+        for (int i = 0; i < arr.length; i++) {
+            // Update firstMax and secondMax if current element is greater
+            if (arr[i] > firstMax) {
+                secondMax = firstMax;
+                firstMax = arr[i];
+            } else if (arr[i] > secondMax && arr[i] != firstMax) {
+                // Update secondMax if current element is smaller than firstMax
+                // but greater than current secondMax and not equal to firstMax
+                secondMax = arr[i];
+            }
+        }
+
+        // Return the secondMax found
+        return secondMax;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 3, 8, 1, 6, 2, 8, 9, 10, 5 };
+        int secondLargest = findSecondLargest(arr);
+        System.out.println("Second largest element in the array is: " + secondLargest);
+    }
+}
